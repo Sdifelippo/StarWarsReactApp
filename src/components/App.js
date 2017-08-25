@@ -6,14 +6,26 @@ class App extends Component {
   // Set props and state below.
   // You should set state for vehicles (empty array), value (empty string), pilot (empty) string.
   // Enter your code below:
-
+constructor(props){
+  super(props);
+  this.handleNameChange=
+   this.handleNameChange.bind(this);
+   this.handleSubmit = this.handleSubmit.bind(this) this.state = {
+     vehicles: [],
+     value: '',
+     pilot: ''
+   };
+}
 
 
   // FORM: HANDLE INPUT CHANGES
   // handleNameChange below:
   // See form lesson for details.
   // Enter your code below:
-
+handleNameChange(event)
+{
+  this.setState({value}): event.target.value});
+}
 
 
   //  FORM: SUBMIT METHOD
@@ -22,8 +34,15 @@ class App extends Component {
   // Once the form is sumbited, two things need to happen: set the state of pilot to the input value.
   // Then, set the value of the input back to an empty string.
   // Enter your code below:
-
-
+handleSubmit(event) {
+  event.preventDefault();
+  this.setState(
+    {
+      pilot: this.state.value,
+      value: ''
+    }
+  )
+}
   // LIFECYCLE
   // Which lifecycle is best for fetching data?
   // Inside this lifecycle, you will fetch the vehicles from here: https://swapi.co/api/vehicles/
@@ -31,6 +50,15 @@ class App extends Component {
   // In your response look for 'results'. It should return this array.
   // You will want to use this array when you set the state of 'vehicles'. You will need this data in your render.
   // Enter your code below:
+componentDidMount(){
+  fetch('https://swapi.co/api/vehicles/').then((rresponse)) => {
+    return response.json()
+  }).then((data) => {
+    let vehicles = data.results;
+    console.log(vehicles)
+    this.setState({vehicles: vehicles})
+  })
+}
 
 
   // RENDER
@@ -46,6 +74,34 @@ class App extends Component {
     Store vehicles state in a variable.
     Map over this variable to access the values needed to render.
     */
+let vehicleArray =
+this.state.vehicles;
+let vehicles = vehicleArray.map((vehicles)=> {
+  return(
+    <div key = {vehicles.name}
+    className = "col-md-4" >
+        <div className="card">
+          <div className="card-block">
+            <h4 className="card-title">Vehicle: {vehicles.name}</h4>
+            <h5 className="card-subtitle mb-2 text-muted">Model: {vehicles.model}</h5>
+            <div className="card">
+              <div className="card-block">
+                <h5 className="card-subtitle mb-2 text-muted">Specs</h5>
+                <ul className="list-group list-group-flush">
+                  <li className="list-group-item">Manufacturer: {vehicles.manufacturer}</li>
+                  <li className="list-group-item">Class: {vehicles.vehicle_class}</li>
+                  <li className="list-group-item">Passengers: {vehicles.passengers}</li>
+                  <li className="list-group-item">Crew: {vehicles.crew}</li>
+                  <li className="list-group-item">Length: {vehicles.length}</li>
+                  <li className="list-group-item">Max Speed: {vehicles.max_atmosphering_speed}</li>
+                  <li className="list-group-item">Cargo Capacity: {vehicles.cargo_capacity}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      < /div>
+      )
     })
     return (
       <div className="App">
