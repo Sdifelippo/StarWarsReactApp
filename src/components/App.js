@@ -1,4 +1,7 @@
 import React, {Component} from 'react';
+import vehicles from './vehicles.js';
+import form from './form.js'
+import jumbotron from './jumbotron.js'
 import '../styles/App.css';
 
 class App extends Component {
@@ -6,15 +9,17 @@ class App extends Component {
   // Set props and state below.
   // You should set state for vehicles (empty array), value (empty string), pilot (empty) string.
   // Enter your code below:
-constructor(props){
-  super(props);
-  this.handleNameChange=
-   this.handleNameChange.bind(this);
-   this.handleSubmit = this.handleSubmit.bind(this) this.state = {
+constructor(){
+  super();
+  this.state = {
      vehicles: [],
      value: '',
      pilot: ''
-   };
+   }
+   this.handleNameChange=
+   this.handleNameChange.bind(this);
+   this.handleSubmit =
+   this.handleSubmit.bind(this);
 }
 
 
@@ -24,7 +29,9 @@ constructor(props){
   // Enter your code below:
 handleNameChange(event)
 {
-  this.setState({value}): event.target.value});
+  this.setState({
+  value : event.target.value
+})
 }
 
 
@@ -51,12 +58,13 @@ handleSubmit(event) {
   // You will want to use this array when you set the state of 'vehicles'. You will need this data in your render.
   // Enter your code below:
 componentDidMount(){
-  fetch('https://swapi.co/api/vehicles/').then((rresponse)) => {
-    return response.json()
-  }).then((data) => {
-    let vehicles = data.results;
-    console.log(vehicles)
-    this.setState({vehicles: vehicles})
+  fetch('https://swapi.co/api/vehicles/')
+  .then(response => response.json())
+  .then(json => {
+    console.log('json is, json')
+    this.setState({
+      vehicles: json.results
+    })
   })
 }
 
@@ -74,38 +82,15 @@ componentDidMount(){
     Store vehicles state in a variable.
     Map over this variable to access the values needed to render.
     */
-let vehicleArray =
-this.state.vehicles;
-let vehicles = vehicleArray.map((vehicles)=> {
-  return(
-    <div key = {vehicles.name}
-    className = "col-md-4" >
-        <div className="card">
-          <div className="card-block">
-            <h4 className="card-title">Vehicle: {vehicles.name}</h4>
-            <h5 className="card-subtitle mb-2 text-muted">Model: {vehicles.model}</h5>
-            <div className="card">
-              <div className="card-block">
-                <h5 className="card-subtitle mb-2 text-muted">Specs</h5>
-                <ul className="list-group list-group-flush">
-                  <li className="list-group-item">Manufacturer: {vehicles.manufacturer}</li>
-                  <li className="list-group-item">Class: {vehicles.vehicle_class}</li>
-                  <li className="list-group-item">Passengers: {vehicles.passengers}</li>
-                  <li className="list-group-item">Crew: {vehicles.crew}</li>
-                  <li className="list-group-item">Length: {vehicles.length}</li>
-                  <li className="list-group-item">Max Speed: {vehicles.max_atmosphering_speed}</li>
-                  <li className="list-group-item">Cargo Capacity: {vehicles.cargo_capacity}</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      < /div>
-      )
-    })
+console.log('vehicles', this.state.vehicles)
     return (
       <div className="App">
-        {/*
+        <jumbotron/>
+          <form pilotName={this.state.pilot}
+            handleSubmit={this.handleSubmit}
+          handleNameChange={this.handleNameChange}/>
+      <vehicles vehicles={this.state.vehicles}/> 
+            /*
         The App component needs the following:
          jumbotron section, form section, vehicle cards section.
          Your form will also need a header in which you will pass the state of the form upon submit.
