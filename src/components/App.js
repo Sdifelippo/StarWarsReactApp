@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import vehicles from './vehicles.js';
+import Vehicles from './vehicles.js';
 import form from './form.js'
-import jumbotron from './jumbotron.js'
+import Jumbotron from './Jumbotron.js'
 import '../styles/App.css';
 
 class App extends Component {
@@ -9,17 +9,15 @@ class App extends Component {
   // Set props and state below.
   // You should set state for vehicles (empty array), value (empty string), pilot (empty) string.
   // Enter your code below:
-constructor(){
-  super();
+constructor(props){
+  super(props);
   this.state = {
      vehicles: [],
      value: '',
      pilot: ''
-   }
-   this.handleNameChange=
-   this.handleNameChange.bind(this);
-   this.handleSubmit =
-   this.handleSubmit.bind(this);
+   };
+   this.handleNameChange = this.handleNameChange.bind(this);
+   this.handleSubmit = this.handleSubmit.bind(this);
 }
 
 
@@ -27,10 +25,9 @@ constructor(){
   // handleNameChange below:
   // See form lesson for details.
   // Enter your code below:
-handleNameChange(event)
-{
+handleNameChange(event){
   this.setState({
-  value : event.target.value
+  pilot : event.target.value
 })
 }
 
@@ -43,12 +40,10 @@ handleNameChange(event)
   // Enter your code below:
 handleSubmit(event) {
   event.preventDefault();
-  this.setState(
-    {
+  this.setState({
       pilot: this.state.value,
       value: ''
-    }
-  )
+    })
 }
   // LIFECYCLE
   // Which lifecycle is best for fetching data?
@@ -58,13 +53,13 @@ handleSubmit(event) {
   // You will want to use this array when you set the state of 'vehicles'. You will need this data in your render.
   // Enter your code below:
 componentDidMount(){
+  console.log('mounted');
   fetch('https://swapi.co/api/vehicles/')
   .then(response => response.json())
   .then(json => {
-    console.log('json is, json')
+    console.log('json is', json.results)
     this.setState({
-      vehicles: json.results
-    })
+      vehicles: json.results})
   })
 }
 
@@ -77,24 +72,19 @@ componentDidMount(){
   // Rendering: create a 'card' for each of the vehicles. consult the Bootstrap 4 docs for details.
   // Enter your code below:
 
-  render() {
+
     /*
     Store vehicles state in a variable.
     Map over this variable to access the values needed to render.
     */
-console.log('vehicles', this.state.vehicles)
+render() {
     return (
       <div className="App">
-        <jumbotron/>
-          <form pilotName={this.state.pilot}
-            handleSubmit={this.handleSubmit}
-          handleNameChange={this.handleNameChange}/>
-      <vehicles vehicles={this.state.vehicles}/> 
-            /*
-        The App component needs the following:
-         jumbotron section, form section, vehicle cards section.
-         Your form will also need a header in which you will pass the state of the form upon submit.
-         */}
+          <Jumbotron/>
+          <form handleSubmit={this.handleSubmit}
+            handleNameChange={this.handleNameChange}/>
+            pilot={this.state.pilot}/>
+            <Vehicles vehicles={this.state.vehicles}/>
       </div>
     );
   }

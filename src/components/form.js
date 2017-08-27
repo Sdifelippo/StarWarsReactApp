@@ -1,11 +1,9 @@
 import React, {Component} from 'react';
+import "../styles/App.css";
 
+//renders form that takes name and displays below
 class form extends Component {
-  constructor(props){
-    super(props)
-    console.log('props are', props);
-  }//renders form that takes name and displays
-  render () {
+    render () {
     return (
       <div className="card-form">
         <div className="card-block">

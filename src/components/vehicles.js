@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import "../styles/App.css"
 
-class vehicles extends Component{
-  render(){//rendering vehicles info
-      let vehicles = this.props.vehicles.map((vehicles) =>{
+class Vehicles extends Component{
+  render(){//rendering vehicles and their info
+    let vehicleArray = this.props.vehicles;
+      let vehicles = vehicleArray.map((vehicles) =>{
       return(
+
         < div key = {vehicles.name} className = "col-md-4" >
           <div className="card">
             <div className="card-block">
@@ -14,8 +16,8 @@ class vehicles extends Component{
                 <div className="card-block">
                   <h5 className="card-subtitle mb-2 text-muted">Specs</h5>
                   <ul className="list-group list-group-flush">
-                    <li className="list-group-item">Manufacturer: {vehicles.manufacturer}</li>
-                    <li className="list-group-item">Class: {vehicles.vehicle_class}</li>
+                    <li className="list-group-item">Manufacturer: {Vehicles.manufacturer}</li>
+                    <li className="list-group-item">Class: {Vehicles.vehicle_class}</li>
                     <li className="list-group-item">Passengers: {vehicles.passengers}</li>
                     <li className="list-group-item">Crew: {vehicles.crew}</li>
                     <li className="list-group-item">Length: {vehicles.length}</li>
@@ -29,7 +31,7 @@ class vehicles extends Component{
         < /div>
         )
       })
-      return (  <main className="row">
+      return (<main className="row">
           <section className="col-md-10 offset-md-1">
             < div className = "row" >
               {vehicles}
@@ -39,4 +41,4 @@ class vehicles extends Component{
     );
   }
 }
-export default vehicles;
+export default Vehicles;
