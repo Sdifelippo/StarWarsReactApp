@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import "../styles/App.css";
 //displays top banner
 class Jumbotron extends Component{
   render(){

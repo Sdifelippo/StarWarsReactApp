@@ -42,8 +42,8 @@ handleNameChange(event){
 handleSubmit(event) {
   event.preventDefault();
   this.setState({
-      pilot: this.state.value,
-      value: ''
+      pilot: this.state.pilot,
+      value: ""
     })
 }
   // LIFECYCLE
