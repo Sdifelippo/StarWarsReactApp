@@ -1,15 +1,16 @@
 import React, {Component} from 'react';
 import Vehicles from './vehicles.js';
-import form from './form.js'
-import Jumbotron from './Jumbotron.js'
+import Form from './form.js';
+import Jumbotron from './Jumbotron.js';
 import '../styles/App.css';
 
-class App extends Component {
+
   // PROPS AND STATE
   // Set props and state below.
   // You should set state for vehicles (empty array), value (empty string), pilot (empty) string.
   // Enter your code below:
-constructor(props){
+class App extends Component {
+  constructor(props){
   super(props);
   this.state = {
      vehicles: [],
@@ -81,7 +82,7 @@ render() {
     return (
       <div className="App">
           <Jumbotron/>
-          <form handleSubmit={this.handleSubmit}
+          <Form handleSubmit={this.handleSubmit}
             handleNameChange={this.handleNameChange}/>
             pilot={this.state.pilot}/>
             <Vehicles vehicles={this.state.vehicles}/>
