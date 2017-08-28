@@ -1,14 +1,16 @@
 import React, {Component} from 'react';
-import Vehicles from './vehicles.js';
-import Form from './form.js';
-import Jumbotron from './Jumbotron.js';
 import '../styles/App.css';
+import Jumbotron from './Jumbotron.js';
+import Form from './form.js';
+import Vehicles from './vehicles.js';
+
+
 
 
   // PROPS AND STATE
   // Set props and state below.
   // You should set state for vehicles (empty array), value (empty string), pilot (empty) string.
-  // Enter your code below:
+  // Enter your code below:looked at nasa daily for code for this and the handlers
 class App extends Component {
   constructor(props){
   super(props);
@@ -27,8 +29,9 @@ class App extends Component {
   // See form lesson for details.
   // Enter your code below:
 handleNameChange(event){
+  console.log(event.target.value);
   this.setState({
-  pilot : event.target.value
+  pilot: event.target.value
 })
 }
 
@@ -83,7 +86,7 @@ render() {
       <div className="App">
           <Jumbotron/>
           <Form handleSubmit={this.handleSubmit}
-            handleNameChange={this.handleNameChange}/>
+            handleNameChange={this.handleNameChange}
             pilot={this.state.pilot}/>
             <Vehicles vehicles={this.state.vehicles}/>
       </div>
