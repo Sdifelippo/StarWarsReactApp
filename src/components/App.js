@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import '../styles/App.css';
 import Jumbotron from './Jumbotron.js';
-import Form from './form.js';
+import Form from './Form.js';
 import Vehicles from './vehicles.js';
 
 
@@ -43,9 +43,9 @@ handleNameChange(event){
   // Then, set the value of the input back to an empty string.
   // Enter your code below:
 handleSubmit(event) {
-  event.preventDefault();
+  event.preventDefault()
   this.setState({
-      pilot: this.state.pilot,
+      pilot: this.state.value,
       value: ""
     })
 }
@@ -87,7 +87,8 @@ render() {
           <Jumbotron/>
           <Form handleSubmit={this.handleSubmit}
             handleNameChange={this.handleNameChange}
-            pilot={this.state.pilot}/>
+            pilot={this.state.value}
+            value={this.state.pilot}/>
             <Vehicles vehicles={this.state.vehicles}/>
       </div>
     );
