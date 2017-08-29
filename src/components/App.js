@@ -31,7 +31,8 @@ class App extends Component {
 handleNameChange(event){
   console.log(event.target.value);
   this.setState({
-  pilot: event.target.value
+  value: event.target.value
+
 })
 }
 
@@ -43,6 +44,7 @@ handleNameChange(event){
   // Then, set the value of the input back to an empty string.
   // Enter your code below:
 handleSubmit(event) {
+  console.log(this.state.pilot);
   event.preventDefault()
   this.setState({
       pilot: this.state.value,
@@ -60,7 +62,7 @@ componentDidMount(){
   console.log('mounted');
   fetch('https://swapi.co/api/vehicles/')
   .then(response => response.json())
-  .then(json => {
+  .then((json) => {
     console.log('json is', json.results)
     this.setState({
       vehicles: json.results})
@@ -85,10 +87,9 @@ render() {
     return (
       <div className="App">
           <Jumbotron/>
-          <Form handleSubmit={this.handleSubmit}
-            handleNameChange={this.handleNameChange}
-            pilot={this.state.value}
-            value={this.state.pilot}/>
+          <Form handleSubmit={this.handleSubmit.bind(this)}
+            handleNameChange={this.handleNameChange.bind(this)}
+            pilot={this.state.pilot} value={this.state.value}/>
             <Vehicles vehicles={this.state.vehicles}/>
       </div>
     );

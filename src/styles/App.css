@@ -5,7 +5,19 @@
 .card{
   margin: 5px;
 }
-
+.card-title{
+  text-align: center;
+}
 .form{
+  text-align: center;
+}
+.btn-primary{
+  margin-left: 45rem;
+}
+
+h1{
+  text-align: center;
+}
+.lead{
   text-align: center;
 }
